@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="logo.png">
+  <title>Patita Cakes — Tortas Artesanales y Bocaditos</title>
+  <meta name="description" content="Patita Cakes: catálogo de tortas artesanales y bocaditos dulces y salados. Pedidos al 975 747 129 en Cajamarca, Perú.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       VARIABLES
+       ============================================================ */
+    :root {
+      --color-primary:    #F72585;
+      --color-accent:     #4ECDC4;
+      --color-bg:         #EEF9F9;
+      --color-surface:    #FFF5F8;
+      --color-text:       #5C2E0A;
+      --color-gold:       #FFC300;
+      --color-border:     #F9C3DC;
+      --font-display:     'Great Vibes', cursive;
+      --font-heading:     'Playfair Display', serif;
+      --font-body:        'Nunito', sans-serif;
+      --radius:           1.5rem;
+      --shadow:           0 4px 20px rgba(247,37,133,.10);
+      --shadow-hover:     0 14px 40px rgba(247,37,133,.22);
+    }
+
+    /* ============================================================
+       RESET
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       HERO — full-viewport landing
+       ============================================================ */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(150deg, #FFD6E8 0%, #C8F8F4 55%, #FFF9E3 100%);
+    }
+
+    /* Animated dots background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(247,37,133,.07) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(78,205,196,.06) 1.5px, transparent 1.5px);
+      background-size: 40px 40px, 60px 60px;
+      background-position: 0 0, 20px 20px;
+      pointer-events: none;
+    }
+
+    /* Floating bubbles decoration */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .15;
+      pointer-events: none;
+      animation: floatBubble 8s ease-in-out infinite;
+    }
+    .bubble:nth-child(1) {
+      width: 180px; height: 180px;
+      background: var(--color-primary);
+      top: -40px; left: -40px;
+      animation-delay: 0s;
+    }
+    .bubble:nth-child(2) {
+      width: 120px; height: 120px;
+      background: var(--color-accent);
+      top: 15%; right: -30px;
+      animation-delay: 2s;
+    }
+    .bubble:nth-child(3) {
+      width: 200px; height: 200px;
+      background: var(--color-gold);
+      bottom: -60px; left: 20%;
+      animation-delay: 4s;
+    }
+    .bubble:nth-child(4) {
+      width: 90px; height: 90px;
+      background: var(--color-primary);
+      bottom: 20%; right: 10%;
+      animation-delay: 1s;
+    }
+    @keyframes floatBubble {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-25px) scale(1.08); }
+    }
+
+    /* Logo */
+    .hero-logo {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 8px 24px rgba(247,37,133,.28));
+      animation: floatLogo 3.6s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* Title */
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 10vw, 6.5rem);
+      color: var(--color-primary);
+      line-height: 1;
+      text-shadow: 2px 3px 0 rgba(255,255,255,.55), 0 6px 20px rgba(247,37,133,.18);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: clamp(1rem, 2.8vw, 1.4rem);
+      color: var(--color-text);
+      opacity: .82;
+      margin-top: .6rem;
+      letter-spacing: .04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Divider */
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 2rem 0 2.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-divider span { font-size: 1.5rem; }
+    .hero-divider::before,
+    .hero-divider::after {
+      content: '';
+      width: 90px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       CATEGORY CARDS
+       ============================================================ */
+    .categories {
+      display: flex;
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--color-text);
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.5rem 2rem;
+      width: 290px;
+      box-shadow: var(--shadow);
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .category-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(247,37,133,.04) 0%, rgba(78,205,196,.04) 100%);
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+    .category-card:hover::before { opacity: 1; }
+    .category-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--color-primary);
+    }
+
+    .category-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      transition: transform .35s ease;
+    }
+    .category-card:hover .category-icon {
+      transform: scale(1.15) rotate(-5deg);
+    }
+
+    .category-name {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: .5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-desc {
+      font-size: .92rem;
+      color: #7a4a2a;
+      text-align: center;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-arrow {
+      margin-top: 1.2rem;
+      font-size: 1.3rem;
+      color: var(--color-primary);
+      opacity: .6;
+      transition: opacity .3s ease, transform .3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .category-card:hover .category-arrow {
+      opacity: 1;
+      transform: translateX(6px);
+    }
+
+    /* ============================================================
+       FOOTER MINI
+       ============================================================ */
+    .site-footer-mini {
+      text-align: center;
+      padding: 1.8rem 1.5rem;
+      background: linear-gradient(150deg, #FFD6E8 0%, #C8F8F4 55%, #FFF9E3 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .site-footer-mini::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(247,37,133,.06) 1.5px, transparent 1.5px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+    .footer-mini-contact {
+      position: relative;
+      z-index: 1;
+    }
+    .footer-mini-contact p {
+      font-size: .92rem;
+      color: var(--color-text);
+      margin: .25rem 0;
+      font-weight: 600;
+    }
+    .footer-mini-copy {
+      font-size: .72rem;
+      color: #b07a5a;
+      margin-top: .8rem;
+      opacity: .7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       SOCIAL MEDIA
+       ============================================================ */
+    .social-section {
+      margin-top: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .social-title {
+      font-family: var(--font-heading);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: .8rem;
+      letter-spacing: .02em;
+    }
+    .social-links {
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.7);
+      border: 1.5px solid var(--color-border);
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+      text-decoration: none;
+    }
+    .social-link:hover {
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,.12);
+    }
+    .social-link--facebook:hover { background: #1877F2; border-color: #1877F2; }
+    .social-link--facebook:hover svg { fill: #fff; }
+    .social-link--tiktok:hover { background: #000; border-color: #000; }
+    .social-link--tiktok:hover svg { fill: #fff; }
+    .social-link--instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: #dc2743; }
+    .social-link--instagram:hover svg { fill: #fff; }
+    .social-link--youtube:hover { background: #FF0000; border-color: #FF0000; }
+    .social-link--youtube:hover svg { fill: #fff; }
+    .social-link--coming-soon {
+      opacity: .45;
+      cursor: default;
+    }
+    .social-link--coming-soon:hover {
+      transform: none;
+      box-shadow: none;
+      background: rgba(255,255,255,.7);
+      border-color: var(--color-border);
+    }
+    .social-link--coming-soon:hover svg { fill: #aaa; }
+    .coming-soon-label {
+      font-size: .65rem;
+      color: #b07a5a;
+      font-style: italic;
+      opacity: .7;
+    }
+    /* ============================================================
+        FADE-IN ANIMATION
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="hero">
+    <!-- Floating decorative bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <img src="logo.png" alt="Patita Cakes" class="hero-logo fade-in">
+
+    <h1 class="hero-title fade-in">Patita Cakes</h1>
+    <p class="hero-subtitle fade-in">Tortas artesanales y bocaditos hechos con amor ✨</p>
+
+    <div class="hero-divider fade-in"><span>🎂</span></div>
+
+    <div class="categories">
+      <!-- Tortas -->
+      <a href="tortas.html" class="category-card fade-in" id="btn-tortas">
+        <span class="category-icon">🎂</span>
+        <h2 class="category-name">Tortas</h2>
+        <p class="category-desc">
+          Tortas artesanales personalizadas para cada ocasión especial.
+          Chantilly, Buttercream, Fondant y más.
+        </p>
+        <span class="category-arrow">→</span>
+      </a>
+
+      <!-- Bocaditos -->
+      <a href="bocaditos.html" class="category-card fade-in" id="btn-bocaditos">
+        <span class="category-icon">🧁</span>
+        <h2 class="category-name">Bocaditos</h2>
+        <p class="category-desc">
+          Bocaditos dulces y salados por ciento.
+          Ideales para eventos, reuniones y celebraciones.
+        </p>
+        <span class="category-arrow">→</span>
+      </a>
+    </div>
+  </main>
+
+  <footer class="site-footer-mini">
+    <div class="footer-mini-contact">
+      <p><a href="https://wa.me/51975747129" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:.4rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366" style="vertical-align:middle;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> 975 747 129</a></p>
+      <p>📍 Cajamarca, Perú</p>
+    </div>
+    <!-- Redes Sociales -->
+    <div class="social-section">
+      <p class="social-title">¡Síguenos y entérate de todo! 💖</p>
+      <div class="social-links">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=100086145684767" target="_blank" rel="noopener" class="social-link social-link--facebook" title="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@sugarcakesdepatita" target="_blank" rel="noopener" class="social-link social-link--tiktok" title="TikTok">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/patitacakes/" target="_blank" rel="noopener" class="social-link social-link--instagram" title="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://youtube.com/@sugarcakes-322?si=cIo5plJ0M9Io8dcB" target="_blank" rel="noopener" class="social-link social-link--youtube" title="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer-mini-copy">© 2026 Patita Cakes · Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Fade-in animation with Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el, index) => {
+      el.style.transitionDelay = (index * 100) + 'ms';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

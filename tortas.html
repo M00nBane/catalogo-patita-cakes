@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="logo.png">
+  <title>Patita Cakes — Catálogo de Tortas Artesanales</title>
+  <meta name="description" content="Catálogo de tortas artesanales personalizadas de Patita Cakes. Chantilly, Crema de mantequilla, Fondant y Ganache. Pedidos al 975 747 129.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       VARIABLES — paleta extraída del logo Patita Cakes
+       ============================================================ */
+    :root {
+      --color-primary:    #F72585;   /* rosa fucsia  — texto "Patita"    */
+      --color-accent:     #4ECDC4;   /* teal / cian  — círculo del logo  */
+      --color-bg:         #EEF9F9;   /* azul cielo claro — fondo página  */
+      --color-surface:    #FFF5F8;   /* rosa blancuzco   — fondo cards   */
+      --color-text:       #5C2E0A;   /* marrón chocolate — texto "Cakes" */
+      --color-gold:       #FFC300;   /* dorado           — estrellas     */
+      --color-border:     #F9C3DC;   /* rosa pastel      — bordes        */
+      --font-display:     'Great Vibes', cursive;
+      --font-heading:     'Playfair Display', serif;
+      --font-body:        'Nunito', sans-serif;
+      --radius:           1.5rem;
+      --shadow:           0 4px 20px rgba(247,37,133,.10);
+      --shadow-hover:     0 14px 40px rgba(247,37,133,.22);
+    }
+
+    /* ============================================================
+       RESET
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      background: linear-gradient(150deg, #FFD6E8 0%, #C8F8F4 55%, #FFF9E3 100%);
+      text-align: center;
+      padding: 3.5rem 1.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* fondo punteado sutil */
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(247,37,133,.07) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(78,205,196,.06) 1.5px, transparent 1.5px);
+      background-size: 40px 40px, 60px 60px;
+      background-position: 0 0, 20px 20px;
+      pointer-events: none;
+    }
+
+    .header-logo {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      margin: 0 auto 1.2rem;
+      filter: drop-shadow(0 6px 16px rgba(247,37,133,.28));
+      animation: floatLogo 3.6s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .site-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 9vw, 6rem);
+      color: var(--color-primary);
+      line-height: 1;
+      text-shadow: 2px 3px 0 rgba(255,255,255,.55), 0 6px 20px rgba(247,37,133,.18);
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-tagline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: clamp(1rem, 2.8vw, 1.35rem);
+      color: var(--color-text);
+      opacity: .82;
+      margin-top: .6rem;
+      letter-spacing: .04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .header-divider span { font-size: 1.5rem; }
+    .header-divider::before,
+    .header-divider::after {
+      content: '';
+      width: 90px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       MAIN WRAPPER
+       ============================================================ */
+    .site-main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+    }
+
+    /* ============================================================
+       SECTION TITLE
+       ============================================================ */
+    .section-title {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 2.8rem;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 3px;
+      margin: .65rem auto 0;
+    }
+
+    /* ============================================================
+       CATALOG GRID
+       ============================================================ */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 580px) {
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .catalog-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1240px) {
+      .catalog-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ============================================================
+       CAKE CARD
+       ============================================================ */
+    .cake-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      transition: transform .32s ease, box-shadow .32s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .cake-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Image wrapper */
+    .card-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .card-image img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .cake-card:hover .card-image img { transform: scale(1.07); }
+
+    /* Overlay gradient at bottom of image for badge readability */
+    .card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(92,46,10,.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    /* Badge */
+    .badge {
+      position: absolute;
+      top: .8rem;
+      right: .8rem;
+      z-index: 2;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: .7rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .32rem .8rem;
+      border-radius: 2rem;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .badge--chantilly {
+      background: rgba(247,37,133,.85);
+      color: #fff;
+    }
+    .badge--buttercream {
+      background: rgba(255,195,0,.92);
+      color: #5C2E0A;
+    }
+    .badge--fondant {
+      background: rgba(78,205,196,.90);
+      color: #fff;
+    }
+    .badge--ganache {
+      background: rgba(92,46,10,.85);
+      color: #fff;
+    }
+
+    /* Card body */
+    .card-body {
+      padding: 1.3rem 1.3rem 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+    .cake-name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+    .cake-desc {
+      font-size: .875rem;
+      color: #7a4a2a;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .card-footer {
+      margin-top: .9rem;
+      display: flex;
+      align-items: baseline;
+      gap: .55rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--color-border);
+      padding-top: .85rem;
+    }
+    .price {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: -.01em;
+    }
+    .price-note {
+      font-size: .7rem;
+      color: #b07a5a;
+      font-style: italic;
+      line-height: 1.3;
+    }
+    .weight {
+      font-family: var(--font-body);
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      background: rgba(78,205,196,.12);
+      padding: .18rem .65rem;
+      border-radius: 1rem;
+      letter-spacing: .03em;
+    }
+
+    /* ============================================================
+       PRICING INFO SECTION
+       ============================================================ */
+    .pricing-section {
+      margin-top: 4.5rem;
+    }
+    .info-box {
+      background: linear-gradient(135deg, #FFF0F7 0%, #E8FBFA 100%);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 2.2rem 2.5rem;
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .info-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: .85rem;
+    }
+    .info-box p {
+      font-size: .95rem;
+      color: #7a4a2a;
+      line-height: 1.85;
+    }
+    .info-box strong { color: var(--color-text); }
+    .info-box em { color: var(--color-primary); font-weight: 600; }
+
+    .coverage-tags {
+      display: flex;
+      gap: .9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.4rem 0 1.2rem;
+    }
+    .coverage-tags .tag {
+      padding: .45rem 1.1rem;
+      border-radius: 2rem;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    /* ============================================================
+       BACK BUTTON
+       ============================================================ */
+    .back-nav {
+      position: fixed;
+      top: 1.2rem;
+      left: 1.2rem;
+      z-index: 100;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--color-primary);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid var(--color-border);
+      border-radius: 2rem;
+      padding: .55rem 1.2rem;
+      box-shadow: 0 2px 12px rgba(247,37,133,.12);
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+    }
+    .back-btn:hover {
+      transform: translateX(-4px);
+      box-shadow: 0 4px 20px rgba(247,37,133,.2);
+      background: rgba(255,255,255,.95);
+    }
+    .back-btn span { font-size: 1.1rem; }
+
+    .site-footer {
+      background: linear-gradient(150deg, #FFD6E8 0%, #C8F8F4 55%, #FFF9E3 100%);
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.5rem;
+      margin-top: 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(247,37,133,.06) 1.5px, transparent 1.5px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+    .footer-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 0 auto 1.4rem;
+      opacity: .88;
+      filter: drop-shadow(0 3px 8px rgba(247,37,133,.2));
+      position: relative;
+      z-index: 1;
+    }
+    .footer-contact {
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-contact p {
+      font-size: .97rem;
+      color: var(--color-text);
+      margin: .35rem 0;
+      font-weight: 600;
+    }
+    .footer-closing {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      position: relative;
+      z-index: 1;
+    }
+    .footer-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: 1rem;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--color-primary);
+      padding: .5rem 1.4rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: 2rem;
+      background: rgba(255,255,255,.5);
+      transition: background .3s ease, transform .3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-back-link:hover {
+      background: rgba(255,255,255,.85);
+      transform: translateY(-3px);
+    }
+    .footer-copy {
+      font-size: .75rem;
+      color: #b07a5a;
+      margin-top: 1.2rem;
+      opacity: .7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       SOCIAL MEDIA
+       ============================================================ */
+    .social-section {
+      margin-top: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .social-title {
+      font-family: var(--font-heading);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: .8rem;
+      letter-spacing: .02em;
+    }
+    .social-links {
+      display: flex;
+      gap: .8rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.7);
+      border: 1.5px solid var(--color-border);
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+      text-decoration: none;
+    }
+    .social-link:hover {
+      transform: translateY(-4px) scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,.12);
+    }
+    .social-link--facebook:hover { background: #1877F2; border-color: #1877F2; }
+    .social-link--facebook:hover svg { fill: #fff; }
+    .social-link--tiktok:hover { background: #000; border-color: #000; }
+    .social-link--tiktok:hover svg { fill: #fff; }
+    .social-link--instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: #dc2743; }
+    .social-link--instagram:hover svg { fill: #fff; }
+    .social-link--youtube:hover { background: #FF0000; border-color: #FF0000; }
+    .social-link--youtube:hover svg { fill: #fff; }
+    .social-link--coming-soon {
+      opacity: .45;
+      cursor: default;
+    }
+    .social-link--coming-soon:hover {
+      transform: none;
+      box-shadow: none;
+      background: rgba(255,255,255,.7);
+      border-color: var(--color-border);
+    }
+    .social-link--coming-soon:hover svg { fill: #aaa; }
+    .coming-soon-label {
+      font-size: .65rem;
+      color: #b07a5a;
+      font-style: italic;
+      opacity: .7;
+    }
+    /* ============================================================
+       FADE-IN ANIMATION (Intersection Observer)
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <!-- Back Navigation -->
+  <nav class="back-nav">
+    <a href="index.html" class="back-btn" id="back-home">
+      <span>←</span> Volver al inicio
+    </a>
+  </nav>
+
+  <header class="site-header">
+    <img src="logo.png" alt="Patita Cakes" class="header-logo">
+    <h1 class="site-title">Patita Cakes</h1>
+    <p class="site-tagline">Tortas artesanales hechas con amor ✨</p>
+    <div class="header-divider"><span>🎂</span></div>
+  </header>
+
+  <!-- ==================== MAIN ==================== -->
+  <main class="site-main">
+
+    <h2 class="section-title">Nuestras Tortas</h2>
+
+    <section class="catalog-grid" aria-label="Catálogo de tortas">
+
+      <!-- ── S/. 70 — Keke de Zanahoria con Flores ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/keke-zanahoria-flores.webp"
+            alt="Keke de zanahoria con flores en buttercream"
+            loading="lazy">
+          <span class="badge badge--buttercream">Crema de mantequilla</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Keke de Zanahoria con Flores</h2>
+          <p class="cake-desc">
+            Keke de zanahoria con frutos secos, relleno de queso crema.
+            Decorado con buttercream y hermosas flores artesanales en buttercream.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 70</span>
+            <span class="weight">¼ kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 100 — Torta de Chocolate Transfer ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-chocolate-transfer.webp"
+            alt="Torta de Maracuyá con flores en buttercream"
+            loading="lazy">
+          <span class="badge badge--buttercream">Crema de Mantequilla</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Chocolate Transfer</h2>
+          <p class="cake-desc">
+            Keke de chocolate con relleno de fudge de chocolate.
+            Decorada con crema de mantequilla en técnica transfer y toper personalizado.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 100</span>
+            <span class="weight">½ kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+      
+      <!-- ── S/. 110 — Keke de Vainilla Snoopy Transfer ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/keke-vainilla-snoopy.webp"
+            alt="Keke de vainilla con técnica transfer de Snoopy"
+            loading="lazy">
+          <span class="badge badge--buttercream">Crema de mantequilla</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Keke de Vainilla Snoopy Transfer</h2>
+          <p class="cake-desc">
+            Keke de vainilla con chispas de chocolate y frutos secos, relleno de ganache y crema de frutos rojos.
+            Decorado con Crema de mantequilla en técnica transfer.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 110</span>
+            <span class="weight">½ kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 130 — Torta de Naranja y Chocolate ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-naranja-chocolate.webp"
+            alt="Torta de Naranja con chocolate y buttercream"
+            loading="lazy">
+          <span class="badge badge--buttercream">Crema de mantequilla</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Naranja y Chocolate</h2>
+          <p class="cake-desc">
+            Keke de naranja con chispas de chocolate, relleno de fudge de chocolate.
+            Decorada con crema de mantequilla y aplicaciones en fondant.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 130</span>
+            <span class="weight">½ kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 140 — Torta de Maracuyá ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-maracuya.webp"
+            alt="Torta de Maracuyá con flores en buttercream"
+            loading="lazy">
+          <span class="badge badge--chantilly">Chantilly</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Maracuyá</h2>
+          <p class="cake-desc">
+            Keke de maracuyá rellena con ganache de maracuyá y decorada con chantilly técnica vintage.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 140</span>
+            <span class="weight">1 kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 150 — Torta de Chocolate Festiva ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-chocolate-festiva.webp"
+            alt="Torta de Chocolate decorada en fondant"
+            loading="lazy">
+          <span class="badge badge--fondant">Fondant</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Chocolate Festiva</h2>
+          <p class="cake-desc">
+            Keke de chocolate con relleno de manjar blanco.
+            Decorada en fondant con aplicaciones decorativas personalizadas.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 150</span>
+            <span class="weight">1 kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 160 — Torta de Vainilla con Frutos Secos ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-vainilla-frutos-secos.webp"
+            alt="Torta de Vainilla con Frutos Secos decorada con chantilly"
+            loading="lazy">
+          <span class="badge badge--chantilly">Chantilly</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Vainilla con Frutos Secos</h2>
+          <p class="cake-desc">
+            Keke de vainilla con frutos secos, relleno de manjar blanco.
+            Decorada con chantilly, muñecos en impresión 3D y aplicaciones en fondant.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 160</span>
+            <span class="weight">¾ kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 160 — Torta de Vainilla Plateada ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-vainilla-plateada.webp"
+            alt="Torta de Vainilla plateada con número 25"
+            loading="lazy">
+          <span class="badge badge--chantilly">Chantilly</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Vainilla Plateada</h2>
+          <p class="cake-desc">
+            Keke de vainilla con chispas de chocolate, relleno de manjar blanco.
+            Decorada con chantilly en acabado plateado y aplicaciones especiales.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 160</span>
+            <span class="weight">1 kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 160 — Torta de Vainilla con Drip de Chocolate ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-vainilla-foto.webp"
+            alt="Torta de Vainilla con chantilly y papel fotográfico"
+            loading="lazy">
+          <span class="badge badge--buttercream">Creama de mantequilla</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Vainilla con Drip de Chocolate</h2>
+          <p class="cake-desc">
+            Keke de vainilla con drip de chocolate, relleno de manjar blanco.
+            Decorada con crema de mantequilla y aplicaciones en fondant, papel fotográfico y topper personalizado.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 160</span>
+            <span class="weight">1 kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 170 — Torta de Plátano Acuarela ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-platano-acuarela.webp"
+            alt="Torta de Plátano con fondant técnica acuarela"
+            loading="lazy">
+          <span class="badge badge--chantilly">Chantilly</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Plátano Acuarela</h2>
+          <p class="cake-desc">
+            Keke de plátano con pecanas, relleno de manjar blanco.
+            Decorada en fondant con la técnica de acuarela y aplicaciones en fondant.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 170</span>
+            <span class="weight">1 kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 180 — Torta de Vainilla con Corona ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-vainilla-corona.webp"
+            alt="Torta de Vainilla con crema de frutos rojos y corona dorada"
+            loading="lazy">
+          <span class="badge badge--fondant">Crema de mantequilla</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Vainilla con Corona</h2>
+          <p class="cake-desc">
+            Keke de vainilla con chispas y pecanas, relleno de crema de frutos rojos.
+            Decorada con Crema de mantequilla y aplicación de corona dorada.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 180</span>
+            <span class="weight">1 kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── S/. 240 — Torta de Vainilla Especial ── -->
+      <article class="cake-card fade-in">
+        <div class="card-image">
+          <img
+            src="tortas/torta-vainilla-especial.webp"
+            alt="Torta de Vainilla Especial con fondant y figura 3D"
+            loading="lazy">
+          <span class="badge badge--buttercream">Crema de mantequilla</span>
+        </div>
+        <div class="card-body">
+          <h2 class="cake-name">Torta de Vainilla Especial</h2>
+          <p class="cake-desc">
+            Keke de vainilla con chispas de chocolate y pasas, relleno de ganache de chocolate y manjar blanco.
+            Decorada con crema de mantequilla y aplicaciones en fondant.
+          </p>
+          <div class="card-footer">
+            <span class="price">S/. 240</span>
+            <span class="weight">1½ kg</span>
+            <span class="price-note">*Precio puede variar según decoraciones y aplicaciones</span>
+          </div>
+        </div>
+      </article>
+
+    </section><!-- /catalog-grid -->
+
+    <!-- ==================== PRICING INFO ==================== -->
+    <section class="pricing-section fade-in" aria-label="Información de precios">
+      <div class="info-box">
+        <h3>Sobre los Precios</h3>
+        <p>
+          Los precios varían según el peso, el tipo de cobertura (Chantilly, Crema de mantequilla, Fondant o Ganache) y las decoraciones elegidas.
+          Cada torta es única y puede personalizarse completamente para tu ocasión especial.
+        </p>
+        <div class="coverage-tags">
+          <span class="tag badge--chantilly">🍦 Chantilly</span>
+          <span class="tag badge--buttercream">🧈 Crema de mantequilla</span>
+          <span class="tag badge--fondant">🎨 Fondant</span>
+          <span class="tag badge--ganache">🍫 Ganache</span>
+        </div>
+        <p>
+          <strong>Decoraciones disponibles:</strong> aplicaciones en fondant, papel fotográfico,
+          toppers personalizados, impresión 3D, técnicas especiales como transfer o acuarela.<br>
+          <em>¡Consulta por tu pedido personalizado!</em>
+        </p>
+      </div>
+    </section>
+
+  </main><!-- /site-main -->
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <img src="logo.png" alt="Patita Cakes" class="footer-logo">
+    <div class="footer-contact">
+      <p><a href="https://wa.me/51975747129" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:.4rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366" style="vertical-align:middle;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> 975 747 129</a></p>
+      <p>📍 Cajamarca, Perú</p>
+    </div>
+    <p class="footer-closing">Cada torta es una obra de arte hecha con amor 🎂</p>
+    <a href="index.html" class="footer-back-link">← Volver al inicio</a>
+    <p class="footer-copy">© 2026 Patita Cakes · Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Fade-in escalonado con Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el, index) => {
+      el.style.transitionDelay = (index * 75) + 'ms';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
